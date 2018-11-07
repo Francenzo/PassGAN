@@ -2,6 +2,7 @@ import os
 import time
 import pickle
 import argparse
+import pprint
 
 import tensorflow as tf
 import numpy as np
@@ -100,8 +101,16 @@ with tf.Session() as session:
     saver = tf.train.Saver()
     saver.restore(session, args.checkpoint)
 
-    v = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES)
-    print v
+    gen_params = lib.params_with_name('Generator')
+    disc_params = lib.params_with_name('Discriminator')
+
+    #v = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES)
+    v = tf.trainable_variables()
+    pp = pprint.PrettyPrinter(indent=4)
+    v = session.run(v)
+    pp.pprint(v)
+    #pp.pprint(gen_params)
+    #pp.pprint(disc_params)
 
     # samples = []
     # then = time.time()
