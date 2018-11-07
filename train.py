@@ -144,6 +144,11 @@ for i in xrange(4):
     print "validation set JSD for n={}: {}".format(i+1, true_char_ngram_lms[i].js_with(validation_char_ngram_lms[i]))
 true_char_ngram_lms = [utils.NgramLanguageModel(i+1, lines, tokenize=False) for i in xrange(4)]
 
+
+
+
+# ===================================== MAIN SECTION THAT RUNS TENSORFLOW =====================================
+
 with tf.Session() as session:
 
     session.run(tf.global_variables_initializer())
@@ -159,6 +164,7 @@ with tf.Session() as session:
             decoded_samples.append(tuple(decoded))
         return decoded_samples
 
+    # Shuffles data for use
     gen = inf_train_gen()
 
     for iteration in xrange(args.iters):
