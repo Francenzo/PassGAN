@@ -42,6 +42,18 @@ curl -L -o data/train.txt https://github.com/brannondorsey/PassGAN/releases/down
 python train.py --output-dir output --training-data data/train.txt
 ```
 
+### Inspecting weights
+
+You can see the weights of the Generator and Discrimnator. The script used can also be found in the tensorflow tools.
+
+```bash
+python inspect_checkpoint.py \
+	--file_name=pretrained/checkpoints/195000.ckpt \
+	--all_tensors \
+	--all_tensor_names
+```
+
+
 You are encouraged to train using your own password leaks and datasets. Some great places to find those include:
 
 - [LinkedIn leak](https://github.com/brannondorsey/PassGAN/releases/download/data/68_linkedin_found_hash_plain.txt.zip) (1.7GB compressed, direct download. Mirror from [Hashes.org](https://hashes.org/leaks.php))
